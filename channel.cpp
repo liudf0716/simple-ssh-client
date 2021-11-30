@@ -35,7 +35,7 @@ Channel::~Channel(void)
     }
 }
 
-string Channel::Read( const std::string &strend, int timeout )
+std::string Channel::Read( const std::string &strend, int timeout )
 {
     std::string data;
     if( NULL == m_channel )
