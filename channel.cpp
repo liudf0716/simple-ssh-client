@@ -1,3 +1,25 @@
+#ifdef WIN32
+#include <windows.h>
+#include <winsock2.h>
+#else
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <unistd.h>
+#include <arpa/inet.h>
+
+#endif
+
+#include <sys/types.h>
+#include <fcntl.h>
+#include <errno.h>
+#include <stdio.h>
+#include <ctype.h>
+
+#include <libssh2.h>
+#include <libssh2_sftp.h>
+
+#include "channel.h"
+
 Channel::Channel( LIBSSH2_CHANNEL*channel)
     :m_channel(channel)
 {
@@ -13,9 +35,9 @@ Channel::~Channel(void)
     }
 }
 
-string Channel::Read( const string &strend, int timeout )
+string Channel::Read( const std::string &strend, int timeout )
 {
-    string data;
+    std::string data;
     if( NULL == m_channel )
     {
         return data;
@@ -60,7 +82,7 @@ string Channel::Read( const string &strend, int timeout )
                     return data;
                 }
                 size_t pos = data.rfind(strend);
-                if( pos != string::npos && data.substr(pos, strend.size()) == strend  )
+                if( pos != std::string::npos && data.substr(pos, strend.size()) == strend  )
                 {
                     return data;
                 }
@@ -74,14 +96,14 @@ string Channel::Read( const string &strend, int timeout )
     return data;
 }
 
-bool Channel::Write(const string &data)
+bool Channel::Write(const std::string &data)
 {
     if( NULL == m_channel )
     {
         return false;
     }
 
-    string send_data = data + "\n";
+    std::string send_data = data + "\n";
     return libssh2_channel_write_ex( m_channel, 0, send_data.c_str(), send_data.size() ) == data.size();
    //return true;
 }
