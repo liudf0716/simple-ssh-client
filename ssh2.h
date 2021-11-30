@@ -1,4 +1,5 @@
 #include <string>
+#include "channel.h"
 
 class Ssh2
  {
