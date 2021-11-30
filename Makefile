@@ -2,6 +2,7 @@ appname := simple-ssh-client
 
 CXX := g++
 CXXFLAGS := -Wall -g
+LDLIBS += $(shell pkg-config --libs libssh2)
 
 srcfiles := $(shell find . -maxdepth 1 -name "*.cpp")
 objects  := $(patsubst %.cpp, %.o, $(srcfiles))
