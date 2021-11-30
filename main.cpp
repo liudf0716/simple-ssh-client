@@ -4,7 +4,7 @@
 int main(int argc, const char * argv[])
 {
     using namespace std;
-    using namespace fish;
+    //using namespace fish;
     
     Ssh2 ssh("127.0.0.1");
     ssh.Connect("test","xxxxxx");
