@@ -1,3 +1,4 @@
+#include <libssh2.h>
 #include <string>
 
 const int CHANNEL_READ_TIMEOUT = 3000;
