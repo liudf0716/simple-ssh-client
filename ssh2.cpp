@@ -18,6 +18,7 @@
 #include <libssh2.h>
 #include <libssh2_sftp.h>
 #include <string>
+#include <iostream>
 
 #include "ssh2.h"
 
@@ -175,6 +176,6 @@ Channel* Ssh2::CreateChannel(const std::string &ptyType)
     }
 
     Channel *ret = new Channel(channel);
-    std::cout<< ret->Read() << std::endl;
+    cout<< ret->Read() << endl;
     return ret;
 }
