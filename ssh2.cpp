@@ -18,7 +18,9 @@
 #include <libssh2.h>
 #include <libssh2_sftp.h>
 
-string Ssh2::s_password;
+#include "ssh2.h"
+
+std::string Ssh2::s_password;
     
 void Ssh2::S_KbdCallback(const char *name, int name_len,
                          const char *instruction, int instruction_len,
