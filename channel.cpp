@@ -76,7 +76,7 @@ std::string Channel::Read( const std::string &strend, int timeout )
             }
             else
             {
-                data += string(buffer);
+                data += std::string(buffer);
                 if( "" == strend )
                 {
                     return data;
@@ -92,7 +92,7 @@ std::string Channel::Read( const std::string &strend, int timeout )
         usleep(50*1000);
     }
 
-    cout<<"read data timeout"<<endl;
+    std::cout<<"read data timeout"<<std::endl;
     return data;
 }
 
