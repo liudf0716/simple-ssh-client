@@ -1,3 +1,23 @@
+#ifdef WIN32
+#include <windows.h>
+#include <winsock2.h>
+#else
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <unistd.h>
+#include <arpa/inet.h>
+
+#endif
+
+#include <sys/types.h>
+#include <fcntl.h>
+#include <errno.h>
+#include <stdio.h>
+#include <ctype.h>
+
+#include <libssh2.h>
+#include <libssh2_sftp.h>
+
 string Ssh2::s_password;
     
 void Ssh2::S_KbdCallback(const char *name, int name_len,
