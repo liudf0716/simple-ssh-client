@@ -79,8 +79,8 @@ bool Ssh2::Connect(const std::string &userName, const std::string &userPwd)
     }
 
     int auth_pw = 0;
-    string fingerprint = libssh2_hostkey_hash(m_session, LIBSSH2_HOSTKEY_HASH_SHA1);
-    string userauthlist = libssh2_userauth_list( m_session, userName.c_str(), (int)userName.size() );
+    std::string fingerprint = libssh2_hostkey_hash(m_session, LIBSSH2_HOSTKEY_HASH_SHA1);
+    std::string userauthlist = libssh2_userauth_list( m_session, userName.c_str(), (int)userName.size() );
     if ( strstr( userauthlist.c_str(), "password") != NULL )
     {
         auth_pw |= 1;
