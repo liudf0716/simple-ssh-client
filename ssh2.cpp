@@ -176,6 +176,6 @@ Channel* Ssh2::CreateChannel(const std::string &ptyType)
     }
 
     Channel *ret = new Channel(channel);
-    cout<< ret->Read() << endl;
+    std::cout<< ret->Read() << std::endl;
     return ret;
 }
