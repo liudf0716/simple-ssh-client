@@ -17,6 +17,7 @@
 
 #include <libssh2.h>
 #include <libssh2_sftp.h>
+#include <string>
 
 #include "ssh2.h"
 
@@ -42,7 +43,7 @@ void Ssh2::S_KbdCallback(const char *name, int name_len,
     (void)abstract;
 }
     
-Ssh2::Ssh2(const string &srvIp, int srvPort)
+Ssh2::Ssh2(const std::string &srvIp, int srvPort)
     :m_srvIp(srvIp),m_srvPort(srvPort)
 {
     m_sock = -1;
@@ -56,7 +57,7 @@ Ssh2::~Ssh2(void)
     libssh2_exit();
 }
     
-bool Ssh2::Connect(const string &userName, const string &userPwd)
+bool Ssh2::Connect(const std::string &userName, const std::string &userPwd)
 {
     m_sock = socket(AF_INET, SOCK_STREAM, 0);
 
@@ -142,7 +143,7 @@ bool Ssh2::Disconnect(void)
     return true;
 }
     
-Channel* Ssh2::CreateChannel(const string &ptyType)
+Channel* Ssh2::CreateChannel(const std::string &ptyType)
 {
     if( NULL == m_session )
     {
